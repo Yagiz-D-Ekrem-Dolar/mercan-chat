@@ -1,0 +1,1010 @@
+@import 'tailwindcss';
+@source '.';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+	--radius: 0.625rem;
+	--background: oklch(1 0 0);
+	--foreground: oklch(0.145 0 0);
+	--card: oklch(1 0 0);
+	--card-foreground: oklch(0.145 0 0);
+	--popover: oklch(1 0 0);
+	--popover-foreground: oklch(0.145 0 0);
+	--primary: oklch(0.205 0 0);
+	--primary-foreground: oklch(0.985 0 0);
+	--secondary: oklch(0.95 0 0);
+	--secondary-foreground: oklch(0.205 0 0);
+	--muted: oklch(0.97 0 0);
+	--muted-foreground: oklch(0.556 0 0);
+	--accent: oklch(0.95 0 0);
+	--accent-foreground: oklch(0.205 0 0);
+	--destructive: oklch(0.577 0.245 27.325);
+	--border: oklch(0.875 0 0);
+	--input: oklch(0.92 0 0);
+	--ring: oklch(0.708 0 0);
+	--chart-1: oklch(0.646 0.222 41.116);
+	--chart-2: oklch(0.6 0.118 184.704);
+	--chart-3: oklch(0.398 0.07 227.392);
+	--chart-4: oklch(0.828 0.189 84.429);
+	--chart-5: oklch(0.769 0.188 70.08);
+	--sidebar: oklch(0.985 0 0);
+	--sidebar-foreground: oklch(0.145 0 0);
+	--sidebar-primary: oklch(0.205 0 0);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.97 0 0);
+	--sidebar-accent-foreground: oklch(0.205 0 0);
+	--sidebar-border: oklch(0.922 0 0);
+	--sidebar-ring: oklch(0.708 0 0);
+	--code-background: oklch(0.985 0 0);
+	--code-foreground: oklch(0.145 0 0);
+	--font-mono:
+		ui-monospace, SFMono-Regular, 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas,
+		'Liberation Mono', Menlo, monospace;
+	--layer-popover: 1000000;
+
+	--chat-form-area-height: 8rem;
+	--chat-form-area-offset: 2rem;
+	--chat-form-padding-top: 6rem;
+	--max-message-height: max(24rem, min(80dvh, calc(100dvh - var(--chat-form-area-height) - 12rem)));
+}
+
+@media (min-width: 640px) {
+	:root {
+		--chat-form-area-height: 24rem;
+		--chat-form-area-offset: 12rem;
+		--chat-form-padding-top: 6rem;
+	}
+}
+
+.dark {
+	--background: oklch(0.16 0 0);
+	--foreground: oklch(0.985 0 0);
+	--card: oklch(0.205 0 0);
+	--card-foreground: oklch(0.985 0 0);
+	--popover: oklch(0.205 0 0);
+	--popover-foreground: oklch(0.985 0 0);
+	--primary: oklch(0.922 0 0);
+	--primary-foreground: oklch(0.205 0 0);
+	--secondary: oklch(0.29 0 0);
+	--secondary-foreground: oklch(0.985 0 0);
+	--muted: oklch(0.269 0 0);
+	--muted-foreground: oklch(0.708 0 0);
+	--accent: oklch(0.269 0 0);
+	--accent-foreground: oklch(0.985 0 0);
+	--destructive: oklch(0.704 0.191 22.216);
+	--border: oklch(1 0 0 / 30%);
+	--input: oklch(1 0 0 / 30%);
+	--ring: oklch(0.556 0 0);
+	--chart-1: oklch(0.488 0.243 264.376);
+	--chart-2: oklch(0.696 0.17 162.48);
+	--chart-3: oklch(0.769 0.188 70.08);
+	--chart-4: oklch(0.627 0.265 303.9);
+	--chart-5: oklch(0.645 0.246 16.439);
+	--sidebar: oklch(0.2 0 0);
+	--sidebar-foreground: oklch(0.985 0 0);
+	--sidebar-primary: oklch(0.488 0.243 264.376);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.269 0 0);
+	--sidebar-accent-foreground: oklch(0.985 0 0);
+	--sidebar-border: oklch(1 0 0 / 10%);
+	--sidebar-ring: oklch(0.556 0 0);
+	--code-background: oklch(0.225 0 0);
+	--code-foreground: oklch(0.875 0 0);
+}
+
+@theme inline {
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--color-chart-1: var(--chart-1);
+	--color-chart-2: var(--chart-2);
+	--color-chart-3: var(--chart-3);
+	--color-chart-4: var(--chart-4);
+	--color-chart-5: var(--chart-5);
+	--color-sidebar: var(--sidebar);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+		scrollbar-width: thin;
+		scrollbar-gutter: stable;
+	}
+
+	/* Global scrollbar styling - visible only on hover */
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: transparent transparent;
+	}
+
+	*:hover {
+		scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
+	}
+
+	*::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+
+	*::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background: transparent;
+		border-radius: 3px;
+		transition: background 0.2s ease;
+	}
+
+	*:hover::-webkit-scrollbar-thumb {
+		background: hsl(var(--muted-foreground) / 0.3);
+	}
+
+	*::-webkit-scrollbar-thumb:hover {
+		background: hsl(var(--muted-foreground) / 0.5);
+	}
+
+	:where(code, pre, kbd, samp) {
+		font-family: var(--font-mono);
+	}
+}
+
+@layer utilities {
+	.scrollbar-hide {
+		/* Hide scrollbar for Chrome, Safari and Opera */
+		&::-webkit-scrollbar {
+			display: none;
+		}
+		/* Hide scrollbar for IE, Edge and Firefox */
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+
+	.shimmer-text {
+		background: linear-gradient(
+			90deg,
+			var(--muted-foreground),
+			var(--foreground),
+			var(--muted-foreground)
+		);
+		background-size: 200% 100%;
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		font-weight: 500;
+		animation: shimmer 1s linear infinite;
+	}
+
+	@keyframes shimmer {
+		to {
+			background-position: -200% 0;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.shimmer-text {
+			animation: none;
+		}
+	}
+}
+
+.mermaidTooltip {
+	display: none !important;
+}
+
+/* ───────────────────────── Mercan theme · soft (mercan.ethosoft.org) ───────────────────────── */
+@font-face {
+	font-family: 'Bonum';
+	src: url('/fonts/bonum-regular.woff2') format('woff2');
+	font-weight: 400;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Bonum';
+	src: url('/fonts/bonum-bold.woff2') format('woff2');
+	font-weight: 700;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Inter Tight';
+	src: url('/fonts/inter-tight-latin.woff2') format('woff2-variations');
+	font-weight: 100 900;
+	font-display: swap;
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F;
+}
+@font-face {
+	font-family: 'Inter Tight';
+	src: url('/fonts/inter-tight-latin-ext.woff2') format('woff2-variations');
+	font-weight: 100 900;
+	font-display: swap;
+	unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1EFF;
+}
+
+:root {
+	--coral: #c15f50;
+	--coral-hi: #dd7466;
+	--serif: 'Bonum', 'Bookman Old Style', Bookman, Georgia, serif;
+	--sans: 'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+	/* Açık tema — krem kâğıt + yumuşak mercan */
+	--background: #fbf6f4;
+	--foreground: #2d2321;
+	--card: #fffcfb;
+	--card-foreground: #2d2321;
+	--popover: #fffcfb;
+	--popover-foreground: #2d2321;
+	--primary: #c96a5c;
+	--primary-foreground: #fffaf8;
+	--secondary: #f5ebe8;
+	--secondary-foreground: #2d2321;
+	--muted: #f6ece9;
+	--muted-foreground: #86746f;
+	--accent: #f4e1dc;
+	--accent-foreground: #8a3f35;
+	--destructive: #d1473f;
+	--border: rgb(70 40 34 / 0.1);
+	--input: rgb(70 40 34 / 0.14);
+	--ring: #d98a7e;
+	--sidebar: #f7ede9;
+	--sidebar-foreground: #2d2321;
+	--sidebar-primary: #c96a5c;
+	--sidebar-primary-foreground: #fffaf8;
+	--sidebar-accent: #f4e1dc;
+	--sidebar-accent-foreground: #8a3f35;
+	--sidebar-border: rgb(70 40 34 / 0.08);
+	--sidebar-ring: #d98a7e;
+	--code-background: #f6ece9;
+	--code-foreground: #2d2321;
+	--chart-1: #c96a5c;
+	--chart-2: #e39a8f;
+	--chart-3: #a8574b;
+	--chart-4: #f0c4bc;
+	--chart-5: #86746f;
+	--radius: 1rem;
+}
+
+.dark {
+	/* Koyu tema — sıcak kömür + pastel mercan */
+	--background: #171212;
+	--foreground: #efe1dd;
+	--card: #1f1918;
+	--card-foreground: #efe1dd;
+	--popover: #221b1a;
+	--popover-foreground: #efe1dd;
+	--primary: #dd7b6e;
+	--primary-foreground: #261615;
+	--secondary: #271e1d;
+	--secondary-foreground: #efe1dd;
+	--muted: #241c1b;
+	--muted-foreground: #aa9893;
+	--accent: #35231f;
+	--accent-foreground: #f4d9d3;
+	--destructive: #ee7d72;
+	--border: rgb(239 225 221 / 0.09);
+	--input: rgb(239 225 221 / 0.12);
+	--ring: #dd7b6e;
+	--sidebar: #130f0f;
+	--sidebar-foreground: #efe1dd;
+	--sidebar-primary: #dd7b6e;
+	--sidebar-primary-foreground: #261615;
+	--sidebar-accent: #271e1d;
+	--sidebar-accent-foreground: #efe1dd;
+	--sidebar-border: rgb(239 225 221 / 0.07);
+	--sidebar-ring: #dd7b6e;
+	--code-background: #1f1918;
+	--code-foreground: #efe1dd;
+	--chart-1: #dd7b6e;
+	--chart-2: #ebaea5;
+	--chart-3: #c15f50;
+	--chart-4: #f4d9d3;
+	--chart-5: #aa9893;
+}
+
+@layer base {
+	html,
+	body {
+		font-family: var(--sans);
+	}
+	::selection {
+		background: rgb(var(--glow) / 0.35);
+	}
+}
+
+/* Karşılama işareti: yumuşak mercan parıltısı */
+.mercan-hero-mark {
+	filter: drop-shadow(0 8px 28px rgb(var(--glow) / 0.28));
+	animation: mercan-float 7s ease-in-out infinite;
+}
+@keyframes mercan-float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-6px);
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.mercan-hero-mark {
+		animation: none;
+	}
+}
+
+/* ───────── Ayarlar penceresi ───────── */
+[data-slot='dialog-overlay'] {
+	background: rgb(20 12 11 / 0.35) !important;
+	backdrop-filter: blur(10px) saturate(1.1);
+}
+.dark [data-slot='dialog-overlay'] {
+	background: rgb(8 5 5 / 0.55) !important;
+}
+
+.mercan-dialog {
+	border-radius: 2rem !important;
+	border: 1px solid var(--border) !important;
+	background:
+		radial-gradient(900px 380px at 100% -10%, rgb(var(--glow) / 0.1), transparent 60%),
+		radial-gradient(700px 320px at -10% 110%, rgb(var(--glow) / 0.07), transparent 60%),
+		var(--card) !important;
+	box-shadow:
+		0 40px 90px -30px rgb(60 25 20 / 0.35),
+		0 0 0 1px rgb(255 255 255 / 0.02) inset !important;
+}
+.mercan-dialog__title {
+	font-family: var(--serif);
+	font-size: 1.6rem;
+	font-weight: 400;
+	letter-spacing: -0.01em;
+	line-height: 1;
+}
+.mercan-dialog__mark {
+	filter: drop-shadow(0 2px 10px rgb(var(--glow) / 0.35));
+}
+
+.mercan-dialog [data-slot='input'],
+.mercan-dialog [data-slot='textarea'],
+.mercan-dialog [data-slot='select-trigger'] {
+	border-radius: 0.95rem;
+	background: color-mix(in oklab, var(--muted) 70%, transparent);
+	border-color: var(--border);
+	transition:
+		border-color 0.2s,
+		box-shadow 0.2s,
+		background 0.2s;
+}
+.mercan-dialog [data-slot='input']:focus-visible,
+.mercan-dialog [data-slot='textarea']:focus-visible,
+.mercan-dialog [data-slot='select-trigger']:focus-visible {
+	border-color: var(--ring);
+	box-shadow: 0 0 0 3px rgb(var(--glow) / 0.18);
+}
+.mercan-dialog [data-slot='checkbox'] {
+	border-radius: 0.4rem;
+}
+.mercan-dialog h3 {
+	font-family: var(--serif);
+	font-weight: 400;
+	font-size: 1.35rem;
+	letter-spacing: -0.01em;
+}
+.mercan-dialog h4 {
+	font-family: var(--serif);
+	font-weight: 400;
+	font-size: 1.05rem;
+}
+.mercan-settings-footer {
+	background: linear-gradient(to top, var(--card) 55%, transparent);
+	padding-top: 1rem;
+}
+
+/* ───────── Sol üst marka: üzerine gelince sağdan "Mercan" yazısı ───────── */
+.mercan-brand {
+	z-index: 30;
+}
+.mercan-brand__btn {
+	display: grid;
+	place-items: center;
+	height: 3rem;
+	width: 3rem;
+	border-radius: 9999px;
+	cursor: pointer;
+	transition:
+		background 0.25s,
+		transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mercan-brand__btn:hover {
+	background: color-mix(in oklab, var(--accent) 70%, transparent);
+}
+.mercan-brand__btn > * {
+	filter: drop-shadow(0 3px 10px rgb(var(--glow) / 0.3));
+	transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mercan-brand:hover .mercan-brand__btn > * {
+	transform: rotate(-8deg) scale(1.08);
+}
+@media (prefers-reduced-motion: reduce) {
+	.mercan-brand__btn > * {
+		transition: none;
+	}
+}
+
+/* ───────── Orta logo: üzerine gelince sağdan "Mercan" açılır ───────── */
+.mercan-hero {
+	display: inline-flex;
+	align-items: center;
+	cursor: default;
+	pointer-events: auto;
+}
+.mercan-hero__wrap {
+	display: inline-block;
+	overflow: hidden;
+	max-width: 0;
+	transition: max-width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mercan-hero__word {
+	display: block;
+	padding: 0 0.1rem 0.35rem 1.1rem;
+	font-family: var(--serif);
+	font-size: 3.4rem;
+	line-height: 1;
+	letter-spacing: -0.02em;
+	color: var(--foreground);
+	white-space: nowrap;
+	opacity: 0;
+	transform: translateX(-1.5rem);
+	transition:
+		opacity 0.45s ease,
+		transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mercan-hero:hover .mercan-hero__wrap {
+	max-width: 14rem;
+}
+.mercan-hero:hover .mercan-hero__word {
+	opacity: 1;
+	transform: translateX(0);
+	transition-delay: 0.08s;
+}
+@media (prefers-reduced-motion: reduce) {
+	.mercan-hero__wrap,
+	.mercan-hero__word {
+		transition: none;
+	}
+}
+
+/* ───────── Mesaj eylem çubuğu ───────── */
+.mercan-actions {
+	display: inline-flex;
+	align-items: center;
+	gap: 2px;
+	padding: 3px 5px;
+	border-radius: 9999px;
+	border: 1px solid var(--border);
+	background: color-mix(in oklab, var(--muted) 55%, transparent);
+	backdrop-filter: blur(8px);
+	opacity: 0.85;
+	transition:
+		opacity 0.2s,
+		box-shadow 0.25s;
+}
+.mercan-actions:hover,
+.mercan-actions:focus-within {
+	opacity: 1;
+	box-shadow: 0 6px 20px -10px rgb(var(--glow) / 0.55);
+}
+.mercan-actions .mercan-action {
+	height: 1.7rem !important;
+	width: 1.7rem !important;
+	border-radius: 9999px !important;
+	color: var(--muted-foreground);
+	transition:
+		background 0.2s,
+		color 0.2s,
+		transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mercan-actions .mercan-action:hover {
+	background: color-mix(in oklab, var(--primary) 16%, transparent) !important;
+	color: var(--primary);
+	transform: translateY(-1px) scale(1.08);
+}
+.mercan-actions .mercan-action:active {
+	transform: scale(0.94);
+}
+.mercan-actions .mercan-action--danger:hover {
+	background: color-mix(in oklab, var(--destructive) 16%, transparent) !important;
+	color: var(--destructive);
+}
+.mercan-actions__sep {
+	width: 1px;
+	height: 1rem;
+	margin: 0 3px;
+	background: var(--border);
+}
+
+/* ───────── Mesaj kutusu düğmeleri (Web arama / Düşünme) ───────── */
+.mercan-toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	height: 2rem;
+	padding: 0 0.8rem;
+	border-radius: 9999px;
+	border: 1px solid var(--border);
+	background: transparent;
+	color: var(--muted-foreground);
+	font-size: 0.8rem;
+	font-weight: 500;
+	cursor: pointer;
+	white-space: nowrap;
+	transition:
+		background 0.25s,
+		color 0.25s,
+		border-color 0.25s,
+		box-shadow 0.3s;
+}
+.mercan-toggle:hover {
+	color: var(--foreground);
+	background: color-mix(in oklab, var(--accent) 60%, transparent);
+}
+.mercan-toggle[data-active='true'] {
+	color: var(--primary);
+	border-color: color-mix(in oklab, var(--primary) 45%, transparent);
+	background: color-mix(in oklab, var(--primary) 14%, transparent);
+	box-shadow: 0 0 0 3px rgb(var(--glow) / 0.1);
+}
+.mercan-toggle[data-pulse='true'] svg {
+	animation: mercan-pulse 1.4s ease-in-out infinite;
+}
+@keyframes mercan-pulse {
+	0%,
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.55;
+		transform: scale(1.18);
+	}
+}
+@container (max-width: 30rem) {
+	.mercan-toggle__label {
+		display: none;
+	}
+	.mercan-toggle {
+		padding: 0 0.55rem;
+	}
+}
+
+/* ───────── Düşünme teması: logodaki mavi, düşünme boyunca açık ───────── */
+:root {
+	--glow: 221 116 102;
+	--mark-1: #f0907f;
+	--mark-2: #de6c5c;
+	--mark-3: #bf4a40;
+}
+html {
+	transition: background-color 0.6s ease;
+}
+body {
+	transition:
+		background-color 0.6s ease,
+		color 0.6s ease;
+}
+
+html.mercan-reasoning {
+	--glow: 40 100 190;
+	--mark-1: #4f8fe0;
+	--mark-2: #2a69bd;
+	--mark-3: #1b4f96;
+	--background: #dce8f4;
+	--foreground: #0f1d2e;
+	--card: #f4f8fc;
+	--card-foreground: #0f1d2e;
+	--popover: #f7fafd;
+	--popover-foreground: #0f1d2e;
+	--primary: #1d5aa8;
+	--primary-foreground: #f4f9ff;
+	--secondary: #cfdeed;
+	--secondary-foreground: #0f1d2e;
+	--muted: #e2ecf6;
+	--muted-foreground: #56708a;
+	--accent: #c3d7ec;
+	--accent-foreground: #0f3a72;
+	--border: rgb(15 50 100 / 0.13);
+	--input: rgb(15 50 100 / 0.16);
+	--ring: #3a7bd0;
+	--sidebar: #cfdeed;
+	--sidebar-foreground: #0f1d2e;
+	--sidebar-primary: #1d5aa8;
+	--sidebar-accent: #c3d7ec;
+	--sidebar-accent-foreground: #0f3a72;
+	--sidebar-border: rgb(15 50 100 / 0.1);
+	--code-background: #eaf1f8;
+	--code-foreground: #0f1d2e;
+}
+html.dark.mercan-reasoning {
+	--glow: 79 144 224;
+	--mark-1: #7db1f2;
+	--mark-2: #4f90e0;
+	--mark-3: #2f6dbd;
+	--background: #090f18;
+	--foreground: #e1ebf6;
+	--card: #0f1824;
+	--card-foreground: #e1ebf6;
+	--popover: #132030;
+	--popover-foreground: #e1ebf6;
+	--primary: #5b9bf0;
+	--primary-foreground: #06101d;
+	--secondary: #14202f;
+	--secondary-foreground: #e1ebf6;
+	--muted: #111b28;
+	--muted-foreground: #8499b0;
+	--accent: #1a2b42;
+	--accent-foreground: #e1ebf6;
+	--border: rgb(170 205 245 / 0.1);
+	--input: rgb(170 205 245 / 0.14);
+	--ring: #5b9bf0;
+	--sidebar: #060b12;
+	--sidebar-foreground: #e1ebf6;
+	--sidebar-primary: #5b9bf0;
+	--sidebar-accent: #14202f;
+	--sidebar-accent-foreground: #e1ebf6;
+	--sidebar-border: rgb(170 205 245 / 0.07);
+	--code-background: #0f1824;
+	--code-foreground: #e1ebf6;
+}
+html.mercan-reasoning ::selection {
+	background: rgb(40 100 190 / 0.3);
+}
+
+/* ═══════════════════════════ Mercan · premium katman ═══════════════════════════ */
+
+/* Renk geçişleri yumuşasın (ortam ışığı mod değişince akar) */
+@property --amb {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: rgb(221 116 102 / 0.13);
+}
+@property --amb2 {
+	syntax: '<color>';
+	inherits: true;
+	initial-value: rgb(221 116 102 / 0.07);
+}
+
+:root {
+	--amb: rgb(221 116 102 / 0.13);
+	--amb2: rgb(221 116 102 / 0.07);
+	--web-accent: #137c42;
+	--think-accent: #1d5aa8;
+	--ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dark {
+	--amb: rgb(221 116 102 / 0.11);
+	--amb2: rgb(221 116 102 / 0.06);
+	--web-accent: #3ccf7c;
+	--think-accent: #6aa5f0;
+}
+html {
+	transition:
+		--amb 0.9s ease,
+		--amb2 0.9s ease,
+		background-color 0.6s ease;
+}
+
+body {
+	position: relative;
+	isolation: isolate;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	font-feature-settings: 'kern', 'liga', 'calt';
+}
+
+/* İnce film greni: yüzeylere hafif doku verir */
+body::after {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: 9998;
+	pointer-events: none;
+	opacity: 0.045;
+	mix-blend-mode: soft-light;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-reduced-motion: reduce) {
+	html {
+		transition: none;
+	}
+}
+
+/* Açılır menüler ve ipuçları: buzlu cam */
+[data-slot='dropdown-menu-content'],
+[data-slot='popover-content'],
+[data-slot='select-content'] {
+	border-radius: 1.15rem !important;
+	border: 1px solid var(--border) !important;
+	background: color-mix(in oklab, var(--popover) 86%, transparent) !important;
+	backdrop-filter: blur(18px) saturate(1.25);
+	box-shadow:
+		0 28px 70px -24px rgb(0 0 0 / 0.5),
+		0 0 0 1px rgb(255 255 255 / 0.03) inset !important;
+}
+[data-slot='tooltip-content'] {
+	border-radius: 9999px !important;
+	padding: 0.3rem 0.8rem !important;
+	font-size: 0.75rem;
+	letter-spacing: 0.01em;
+}
+
+/* Düğmelere dokunsal his */
+[data-slot='button'] {
+	transition:
+		background-color 0.2s,
+		color 0.2s,
+		transform 0.25s var(--ease-premium),
+		box-shadow 0.3s;
+}
+[data-slot='button']:active:not(:disabled) {
+	transform: scale(0.95);
+}
+
+/* ───────── Mesaj kutusu (composer) ───────── */
+/* Gönder düğmesi: degrade + ışıma */
+/* Kullanıcı balonu */
+/* Mesajlar yumuşakça yükselerek gelir */
+.chat-message {
+	animation: mercan-rise 0.55s var(--ease-premium) both;
+}
+@keyframes mercan-rise {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.chat-message {
+		animation: none;
+	}
+}
+
+/* Sekmeler */
+.chat-tabs-fade {
+	display: none;
+}
+
+/* Toggle düğmeleri: kendi mod renkleri */
+.mercan-toggle[data-kind='web'][data-active='true'] {
+	color: var(--web-accent);
+	border-color: color-mix(in oklab, var(--web-accent) 50%, transparent);
+	background: color-mix(in oklab, var(--web-accent) 14%, transparent);
+}
+.mercan-toggle[data-kind='think'][data-active='true'] {
+	color: var(--think-accent);
+	border-color: color-mix(in oklab, var(--think-accent) 50%, transparent);
+	background: color-mix(in oklab, var(--think-accent) 14%, transparent);
+}
+
+/* Orta logo: arkasında yumuşak ışık halesi */
+/* ═══════════ Mod: web arama (yeşil) ═══════════ */
+html.mercan-searching {
+	--glow: 23 138 74;
+	--amb: rgb(23 138 74 / 0.14);
+	--amb2: rgb(23 138 74 / 0.07);
+	--mark-1: #43d982;
+	--mark-2: #1fa95c;
+	--mark-3: #137c42;
+	--background: #dbeee2;
+	--foreground: #10241a;
+	--card: #f4faf6;
+	--card-foreground: #10241a;
+	--popover: #f7fbf8;
+	--popover-foreground: #10241a;
+	--primary: #137c42;
+	--primary-foreground: #f4fff8;
+	--secondary: #cfe5d8;
+	--secondary-foreground: #10241a;
+	--muted: #e2f0e8;
+	--muted-foreground: #587367;
+	--accent: #c4e1d0;
+	--accent-foreground: #0d4a28;
+	--border: rgb(16 60 36 / 0.13);
+	--input: rgb(16 60 36 / 0.16);
+	--ring: #2a9a5c;
+	--sidebar: #cfe5d8;
+	--sidebar-foreground: #10241a;
+	--sidebar-primary: #137c42;
+	--sidebar-accent: #c4e1d0;
+	--sidebar-accent-foreground: #0d4a28;
+	--sidebar-border: rgb(16 60 36 / 0.1);
+	--code-background: #eaf4ee;
+	--code-foreground: #10241a;
+}
+html.dark.mercan-searching {
+	--glow: 60 207 124;
+	--amb: rgb(60 207 124 / 0.12);
+	--amb2: rgb(60 207 124 / 0.06);
+	--mark-1: #7beaa8;
+	--mark-2: #3ccf7c;
+	--mark-3: #1fa85c;
+	--background: #0a1410;
+	--foreground: #e3efe8;
+	--card: #101c16;
+	--card-foreground: #e3efe8;
+	--popover: #14231b;
+	--popover-foreground: #e3efe8;
+	--primary: #3ccf7c;
+	--primary-foreground: #04150c;
+	--secondary: #152319;
+	--secondary-foreground: #e3efe8;
+	--muted: #131f18;
+	--muted-foreground: #86a595;
+	--accent: #1b3025;
+	--accent-foreground: #e3efe8;
+	--border: rgb(190 240 210 / 0.1);
+	--input: rgb(190 240 210 / 0.14);
+	--ring: #3ccf7c;
+	--sidebar: #070e0b;
+	--sidebar-foreground: #e3efe8;
+	--sidebar-primary: #3ccf7c;
+	--sidebar-accent: #152319;
+	--sidebar-accent-foreground: #e3efe8;
+	--sidebar-border: rgb(190 240 210 / 0.07);
+	--code-background: #101c16;
+	--code-foreground: #e3efe8;
+}
+html.mercan-searching ::selection {
+	background: rgb(23 138 74 / 0.3);
+}
+
+/* düşünme mavisi için ortam ışığı (yeşilden sonra gelir → öncelikli) */
+html.mercan-reasoning {
+	--amb: rgb(40 100 190 / 0.2);
+	--amb2: rgb(40 100 190 / 0.1);
+}
+html.dark.mercan-reasoning {
+	--amb: rgb(79 144 224 / 0.17);
+	--amb2: rgb(79 144 224 / 0.08);
+}
+
+/* ═══════════ Logo animasyonu: düşünürken / ararken ═══════════ */
+.mk-body,
+.mk-dot {
+	transform-box: fill-box;
+	transform-origin: 50% 50%;
+}
+
+html.mercan-reasoning :is(.mercan-hero, .mercan-brand) .mk-body,
+html.mercan-searching :is(.mercan-hero, .mercan-brand) .mk-body,
+.mercan-avatar[data-active='true'] .mk-body,
+.mercan-mark-anim .mk-body {
+	animation: mk-breathe 2.8s ease-in-out infinite;
+}
+html.mercan-reasoning :is(.mercan-hero, .mercan-brand) .mk-dot,
+html.mercan-searching :is(.mercan-hero, .mercan-brand) .mk-dot,
+.mercan-avatar[data-active='true'] .mk-dot,
+.mercan-mark-anim .mk-dot {
+	animation: mk-dot 2s ease-in-out infinite;
+}
+@keyframes mk-breathe {
+	0%,
+	100% {
+		transform: scale(1) rotate(0deg);
+	}
+	35% {
+		transform: scale(1.06) rotate(5deg);
+	}
+	70% {
+		transform: scale(0.97) rotate(-4deg);
+	}
+}
+@keyframes mk-dot {
+	0%,
+	100% {
+		transform: translate(0, 0) scale(1);
+	}
+	25% {
+		transform: translate(-22px, 16px) scale(1.2);
+	}
+	50% {
+		transform: translate(2px, 34px) scale(0.85);
+	}
+	75% {
+		transform: translate(22px, 14px) scale(1.15);
+	}
+}
+.mercan-brand__btn {
+	position: relative;
+}
+@media (prefers-reduced-motion: reduce) {
+	.mk-body,
+	.mk-dot,
+	.mercan-brand__btn > * {
+		animation: none !important;
+	}
+}
+
+/* Sol üst logo düşünürken yalnızca nefes alır, dönmez */
+@keyframes mk-breathe-still {
+	0%,
+	100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.06);
+	}
+}
+.mercan-brand .mk-body {
+	animation-name: mk-breathe-still !important;
+}
+
+/* Yanıt alanındaki Mercan: büyük, sürekli görünür; üretirken canlanır */
+.mercan-avatar {
+	display: inline-flex;
+	margin: 0 0 0.6rem;
+	filter: drop-shadow(0 4px 12px rgb(var(--glow) / 0.22));
+	transition: filter 0.5s;
+}
+.mercan-avatar[data-active='true'] .mk-body {
+	animation: mk-breathe 2.8s ease-in-out infinite;
+}
+.mercan-avatar[data-active='true'] .mk-dot {
+	animation: mk-dot 2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+	.mercan-avatar .mk-body,
+	.mercan-avatar .mk-dot {
+		animation: none !important;
+	}
+}
+
+/* Mesaj kutusu: arkasındaki metin görünmesin (neredeyse opak, ince cam) */
+.mercan-composer {
+	background-color: color-mix(in oklab, var(--muted) 94%, var(--background)) !important;
+	backdrop-filter: blur(22px) saturate(1.2);
+	box-shadow:
+		0 18px 40px -26px rgb(0 0 0 / 0.35),
+		0 1px 0 rgb(255 255 255 / 0.04) inset !important;
+	transition: background-color 0.6s, box-shadow 0.3s;
+}
+.mercan-composer:focus-within {
+	box-shadow:
+		0 22px 48px -26px rgb(0 0 0 / 0.45),
+		0 0 0 1px color-mix(in oklab, var(--primary) 35%, transparent) !important;
+}
